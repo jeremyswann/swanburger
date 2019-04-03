@@ -9,6 +9,14 @@ import ArticlePreview from '../components/article-preview'
 class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    const siteDescription = get(
+      this,
+      'props.data.site.siteMetadata.description'
+    )
+    const googleVerification = get(
+      this,
+      'props.data.site.siteMetadata.googleVerification'
+    )
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
     const [author] = get(this, 'props.data.allContentfulPerson.edges')
 
@@ -17,9 +25,10 @@ class RootIndex extends React.Component {
         <div style={{ background: '#fff' }}>
           <Helmet>
             <title>{siteTitle}</title>
+            <menu name="description" content={siteDescription} />
             <meta
               name="google-site-verification"
-              content="gWKN-f4VBGi6crl-XGYR-xCHv_kjoQvlP4p5z3xIeWU"
+              content={googleVerification}
             />
           </Helmet>
           <Hero data={author.node} />
@@ -48,6 +57,8 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
+        googleVerification
       }
     }
     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
