@@ -30,10 +30,7 @@
 		"eslint-plugin-prettier": "^3.0.1",
 		"eslint-plugin-react": "^7.11.1",
 		"gatsby": "^2.0.18",
-		"gh-pages": "^2.0.1",
-		"inquirer": "^6.2.0",
-		"prettier": "^1.14.3",
-		"yargs-parser": "^11.0.0"
+		"prettier": "^1.14.3"
 	},
 	"homepage": "https://github.com/jeremyswann/swanburger#readme",
 	"keywords": [
