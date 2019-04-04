@@ -22,6 +22,7 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
 	siteMetadata: {
+		siteUrl: 'https://swanburger.com',
 		title: 'Swanburger - Freerange Web Development',
 		description:
 			'Freerange web developer (full stack), eCommerce, websites, CMS, ERP, DAM, SaaS and most edge technologies. Farm fresh designs on buns straight out of the oven. Available for consulting and contract work.',
@@ -32,6 +33,7 @@ module.exports = {
 		'gatsby-transformer-sharp',
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-sharp',
+		'gatsby-plugin-sitemap',
 		{
 			resolve: 'gatsby-source-contentful',
 			options: contentfulConfig,
