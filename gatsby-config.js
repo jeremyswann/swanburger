@@ -33,6 +33,7 @@ module.exports = {
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-sharp`,
 		`gatsby-plugin-sitemap`,
+		`gatsby-plugin-linaria`,
 		{
 			resolve: `gatsby-source-contentful`,
 			options: contentfulConfig,
