@@ -1,99 +1,22 @@
+/* eslint "react/jsx-pascal-case": "off" */
 import React from 'react'
-import { graphql } from 'gatsby'
-import get from 'lodash/get'
-import Helmet from 'react-helmet'
-import Hero from '../components/hero'
+import { Link } from 'gatsby'
+
 import Layout from '../components/layout'
-import ArticlePreview from '../components/article-preview'
+import Image from '../components/image'
+import SEO from '../components/seo'
 
-class RootIndex extends React.Component {
-	render() {
-		const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-		const siteDescription = get(
-			this,
-			'props.data.site.siteMetadata.description'
-		)
-		const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-		const [author] = get(this, 'props.data.allContentfulPerson.edges')
+const IndexPage = () => (
+	<Layout>
+		<SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+		<h1>Hi people</h1>
+		<p>Welcome to your new Gatsby site.</p>
+		<p>Now go build something great.</p>
+		<div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+			<Image />
+		</div>
+		<Link to="/page-2/">Go to page 2</Link>
+	</Layout>
+)
 
-		return (
-			<Layout location={this.props.location}>
-				<div style={{ background: '#fff' }}>
-					<Helmet>
-						<title>{siteTitle}</title>
-						<menu name="description" content={siteDescription} />
-					</Helmet>
-					<Hero data={author.node} />
-					<div className="wrapper">
-						<h2 className="section-headline">Recent articles</h2>
-						<ul className="article-list">
-							{posts.map(({ node }) => {
-								return (
-									<li key={node.slug}>
-										<ArticlePreview article={node} />
-									</li>
-								)
-							})}
-						</ul>
-					</div>
-				</div>
-			</Layout>
-		)
-	}
-}
-
-export default RootIndex
-
-export const pageQuery = graphql`
-	query HomeQuery {
-		site {
-			siteMetadata {
-				title
-				description
-			}
-		}
-		allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-			edges {
-				node {
-					title
-					slug
-					publishDate(formatString: "MMMM Do, YYYY")
-					tags
-					heroImage {
-						fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-							...GatsbyContentfulFluid_tracedSVG
-						}
-					}
-					description {
-						childMarkdownRemark {
-							html
-						}
-					}
-				}
-			}
-		}
-		allContentfulPerson(
-			filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }
-		) {
-			edges {
-				node {
-					name
-					shortBio {
-						shortBio
-					}
-					title
-					heroImage: image {
-						fluid(
-							maxWidth: 1180
-							maxHeight: 480
-							resizingBehavior: PAD
-							background: "rgb:000000"
-						) {
-							...GatsbyContentfulFluid_tracedSVG
-						}
-					}
-				}
-			}
-		}
-	}
-`
+export default IndexPage

@@ -43,5 +43,20 @@
 		"react/prefer-stateless-function": 2,
 		"react/prefer-es6-class": 2,
 		"react/no-direct-mutation-state": 2
+	},
+	"settings": {
+		"import/core-modules": ["linaria", "linaria/react"],
+		"react": {
+			"createClass": "createReactClass",
+			"pragma": "React",
+			"version": "detect",
+			"flowVersion": "0.53"
+		},
+		"propWrapperFunctions": [
+			"forbidExtraProps",
+			{ "property": "freeze", "object": "Object" },
+			{ "property": "myFavoriteWrapper" }
+		],
+		"linkComponents": ["Hyperlink", { "name": "Link", "linkAttribute": "to" }]
 	}
 }
