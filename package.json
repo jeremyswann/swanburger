@@ -1,11 +1,11 @@
 {
-	"name": "gatsby-starter-default",
-	"private": true,
-	"description": "A simple starter to get up and developing quickly with Gatsby",
-	"version": "0.1.0",
-	"author": "Kyle Mathews <mathews.kyle@gmail.com>",
+	"name": "swanburger",
+	"description": "Swanburger - Freerange web developemt",
+	"version": "0.0.1",
+	"author": "Jeremy Swanborough <jeremy@swanburger.com>",
 	"dependencies": {
 		"dotenv": "^7.0.0",
+		"g": "^2.0.1",
 		"gatsby": "^2.3.5",
 		"gatsby-image": "^2.0.37",
 		"gatsby-plugin-google-tagmanager": "^2.0.12",
@@ -15,16 +15,27 @@
 		"gatsby-plugin-react-helmet": "^3.0.11",
 		"gatsby-plugin-sharp": "^2.0.32",
 		"gatsby-plugin-sitemap": "^2.0.11",
+		"gatsby-remark-a11y-emoji": "^1.0.0",
 		"gatsby-source-contentful": "^2.0.45",
 		"gatsby-source-filesystem": "^2.0.28",
+		"gatsby-transformer-remark": "^2.3.8",
 		"gatsby-transformer-sharp": "^2.1.17",
+		"gsap": "^2.1.2",
 		"linaria": "^1.3.1",
+		"lodash": "^4.17.11",
 		"prop-types": "^15.7.2",
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6",
-		"react-helmet": "^5.2.0"
+		"react": "^16.8",
+		"react-dom": "^16.8",
+		"react-helmet": "^5.2.0",
+		"react-onclickoutside": "^6.8.0",
+		"react-pose": "^4.0.8",
+		"sharp": "^0.21.0",
+		"typeface-ramaraja": "^0.0.71",
+		"typeface-roboto-slab": "^0.0.72",
+		"yarn": "^1.15.2"
 	},
 	"devDependencies": {
+		"babel-eslint": "^10.0.1",
 		"eslint": "^5.16.0",
 		"eslint-config-prettier": "^4.1.0",
 		"eslint-plugin-jsx-a11y": "^6.2.1",
@@ -36,23 +47,28 @@
 		"stylelint": "^9.10.1",
 		"stylelint-config-recommended": "^2.1.0"
 	},
+	"homepage": "https://github.com/jeremyswann/swanburger#readme",
 	"keywords": [
-		"gatsby"
+		"gatsby",
+		"contentful",
+		"swanburger",
+		"jeremyswann"
 	],
 	"license": "MIT",
+	"main": "n/a",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jeremyswann/swanburger.git"
+	},
 	"scripts": {
 		"build": "gatsby build",
-		"dev": "gatsby develop",
+		"dev": "gatsby develop --https",
 		"format": "prettier --write src/**/*.{js,jsx}",
 		"start": "npm run develop",
 		"serve": "gatsby serve",
 		"test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
 	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/gatsbyjs/gatsby-starter-default"
-	},
 	"bugs": {
-		"url": "https://github.com/gatsbyjs/gatsby/issues"
+		"url": "https://github.com/jeremyswann/swanburger/issues"
 	}
 }

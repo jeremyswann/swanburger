@@ -1,50 +1,88 @@
-/**
- * Layout component that queries for data
- * with Gatsby's StaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/static-query/
- */
-
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import { css } from 'linaria'
+import { styled } from 'linaria/react'
+import 'typeface-ramaraja'
+import 'typeface-roboto-slab'
+import posed from 'react-pose'
 
 import Header from './header'
+import Menu from './menu'
+import Footer from './footer'
 
-const Layout = ({ children }) => (
-	<StaticQuery
-		query={graphql`
-			query SiteTitleQuery {
-				site {
-					siteMetadata {
-						title
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+`
+const Page = styled.div`
+	margin-top: 2rem;
+	flex: 1;
+	display: flex;
+	flex-direction: ${props => (props.isOpen ? 'row' : 'column')};
+`
+const Container = styled.div`
+	max-width: 960px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex: 1;
+`
+const Main = styled.main`
+	font-size: 1rem;
+	font-family: 'Roboto Slab', serif;
+	color: #4f1b2a;
+	margin: 0 1rem;
+	flex: 1;
+`
+const SideBar = posed.div({
+	open: {
+		x: '0%',
+		opacity: 1,
+		staggerChildren: 100,
+	},
+	closed: { x: '-100%', delay: 300, opacity: 0 },
+})
+
+const Layout = ({ children }) => {
+	const [isOpen, setIsOpen] = useState(false)
+	const toggle = () => setIsOpen(!isOpen)
+	return (
+		<StaticQuery
+			query={graphql`
+				query SiteTitleQuery {
+					site {
+						siteMetadata {
+							title
+						}
 					}
 				}
-			}
-		`}
-		render={data => (
-			<>
-				<Header siteTitle={data.site.siteMetadata.title} />
-				<div
-					style={{
-						margin: `0 auto`,
-						maxWidth: 960,
-						padding: `0px 1.0875rem 1.45rem`,
-						paddingTop: 0,
-					}}
-				>
-					<main>{children}</main>
-					<footer>
-						© {new Date().getFullYear()}, Built with
-						{` `}
-						<a href="https://www.gatsbyjs.org">Gatsby</a>
-					</footer>
-				</div>
-			</>
-		)}
-	/>
-)
+			`}
+			render={data => {
+				const { title } = data.site.siteMetadata
+				return (
+					<Wrapper>
+						<Header siteTitle={title} isOpen={isOpen} toggle={toggle} />
+						<Page isOpen={isOpen}>
+							<SideBar
+								pose={isOpen ? 'open' : 'closed'}
+								style={{ display: isOpen ? 'block' : 'none' }}
+							>
+								<Menu isOpen={isOpen} setIsOpen={setIsOpen} />
+							</SideBar>
+							<Container>
+								<Main>{children}</Main>
+							</Container>
+						</Page>
+						<Footer />
+					</Wrapper>
+				)
+			}}
+		/>
+	)
+}
 
 Layout.propTypes = {
 	children: PropTypes.node.isRequired,
@@ -55,14 +93,24 @@ export default Layout
 export const globals = css`
 	:global() {
 		html {
-			font-family: sans-serif;
+			font-family: 'Roboto Slab', sans-serif;
+			background: #fcf2f5;
+			font-size: 100%;
 			-ms-text-size-adjust: 100%;
 			-webkit-text-size-adjust: 100%;
+			height: 100%;
 		}
 		body {
 			margin: 0;
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
+			height: 100%;
+		}
+		#___gatsby {
+			height: 100%;
+			div:first-child {
+				height: 100%;
+			}
 		}
 		article,
 		aside,
