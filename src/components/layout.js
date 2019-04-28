@@ -21,13 +21,17 @@ const Page = styled.div`
 	flex: 1;
 	display: flex;
 	flex-direction: ${props => (props.isOpen ? 'row' : 'column')};
+	justify-content: ${props => (props.isOpen ? 'flex-start' : 'flex-start')};
+	align-items: ${props => (props.isOpen ? 'flex-start' : 'center')};
 `
 const Container = styled.div`
 	max-width: 960px;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: stretch;
+	justify-self: center;
 	flex: 1;
 `
 const Main = styled.main`
