@@ -1,16 +1,11 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import styles from './navigation.module.css'
+import React, { forwardRef } from 'react'
 
-export default () => (
-  <nav role="navigation">
-    <ul className={styles.navigation}>
-      <li className={styles.navigationItem}>
-        <Link to="/">Home</Link>
-      </li>
-      <li className={styles.navigationItem}>
-        <Link to="/blog/">Blog</Link>
-      </li>
-    </ul>
-  </nav>
-)
+import Menu from './menu'
+
+const Navigation = forwardRef((props, ref) => {
+	return <Menu {...props} ref={ref} />
+})
+
+Navigation.displayName = `Navigation`
+
+export default Navigation

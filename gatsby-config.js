@@ -1,42 +1,22 @@
-let contentfulConfig
-
-try {
-	// Load the Contentful config from the .contentful.json
-	contentfulConfig = require(`./.contentful`)
-} catch (_) {}
-
-// Overwrite the Contentful config with environment variables if they exist
-contentfulConfig = {
-	spaceId: process.env.CONTENTFUL_SPACE_ID || contentfulConfig.spaceId,
-	accessToken:
-		process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken,
-}
-
-const { spaceId, accessToken } = contentfulConfig
-
-if (!spaceId || !accessToken) {
-	throw new Error(
-		`Contentful spaceId and the delivery token need to be provided.`
-	)
-}
-
 module.exports = {
 	siteMetadata: {
-		siteUrl: `https://swanburger.com`,
-		title: `Swanburger - Freerange Web Development`,
+		url: `https://swanburger.com`,
+		title: `SwanBurger`,
 		description: `Freerange web developer (full stack), eCommerce, websites, CMS, ERP, DAM, SaaS and most edge technologies. Farm fresh designs on buns straight out of the oven. Available for consulting and contract work.`,
+		author: `@jeremyswann`,
 	},
-	pathPrefix: `/gatsby-contentful-starter`,
 	plugins: [
-		`gatsby-transformer-remark`,
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-sharp`,
 		`gatsby-plugin-sitemap`,
 		`gatsby-plugin-linaria`,
+		`gatsby-plugin-react-helmet`,
 		{
-			resolve: `gatsby-source-contentful`,
-			options: contentfulConfig,
+			resolve: `gatsby-transformer-remark`,
+			options: {
+				plugins: [`gatsby-remark-a11y-emoji`],
+			},
 		},
 		{
 			resolve: `gatsby-plugin-google-tagmanager`,
@@ -49,19 +29,37 @@ module.exports = {
 			},
 		},
 		{
+			resolve: `gatsby-source-contentful`,
+			options: {
+				spaceId: process.env.CONTENTFUL_SPACE_ID,
+				accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
+				downloadLocal: true,
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `images`,
+				path: `${__dirname}/src/images`,
+			},
+		},
+		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
-				name: `Swanburger`,
-				short_name: `Swanburger`,
+				name: `SwanBurger`,
+				short_name: `SwanBurger`,
 				start_url: `/`,
-				background_color: `#fafafa`,
-				theme_color: `#008599`,
+				background_color: `#FCF2F5`,
+				theme_color: `#4F1B2A`,
 				// Enables "Add to Homescreen" prompt and disables browser UI (including back button)
 				// see https://developers.google.com/web/fundamentals/web-app-manifest/#display
 				display: `standalone`,
-				icon: `src/images/icon.png`, // This path is relative to the root of the site.
+				icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
 				include_favicon: true, // Include favicon
 			},
 		},
+		// this (optional) plugin enables Progressive Web App + Offline functionality
+		// To learn more, visit: https://gatsby.dev/offline
+		// `gatsby-plugin-offline`,
 	],
 }
