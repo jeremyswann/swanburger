@@ -1,6 +1,6 @@
 module.exports = {
 	siteMetadata: {
-		url: `https://swanburger.com`,
+		siteUrl: `https://swanburger.com`,
 		title: `SwanBurger`,
 		description: `Freerange web developer (full stack), eCommerce, websites, CMS, ERP, DAM, SaaS and most edge technologies. Farm fresh designs on buns straight out of the oven. Available for consulting and contract work.`,
 		author: `@jeremyswann`,
@@ -28,14 +28,14 @@ module.exports = {
 				// dataLayerName: "YOUR_DATA_LAYER_NAME",
 			},
 		},
-		{
-			resolve: `gatsby-source-contentful`,
-			options: {
-				spaceId: process.env.CONTENTFUL_SPACE_ID,
-				accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
-				downloadLocal: true,
-			},
-		},
+		// {
+		// 	resolve: `gatsby-source-contentful`,
+		// 	options: {
+		// 		spaceId: process.env.CONTENTFUL_SPACE_ID,
+		// 		accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
+		// 		downloadLocal: true,
+		// 	},
+		// },
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
