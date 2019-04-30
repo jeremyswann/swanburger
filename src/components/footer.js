@@ -3,6 +3,7 @@ import { styled } from 'linaria/react'
 
 import Twitter from './twitter'
 import Github from './github'
+import Gatsby from './gatsby'
 
 const Footer = styled.footer`
 	justify-self: flex-end;
@@ -15,7 +16,8 @@ const Footer = styled.footer`
 `
 const Text = styled.span`
 	font-family: 'Roboto Slab';
-	font-size: 1rem;
+	font-size: 1.5rem;
+	height: 1.5rem;
 	color: #4f1b2a;
 	margin: 0.5rem 0;
 	flex: 1;
@@ -24,8 +26,8 @@ const Text = styled.span`
 	}
 `
 const Social = styled.span`
-	font-size: 24px;
-	height: 24px;
+	font-size: 1.5rem;
+	height: 1.5rem;
 	display: flex;
 	flex-direction: row;
 	margin: 0.5rem 0;
@@ -54,13 +56,15 @@ const PageFooter = () => {
 		<Footer>
 			<Text>
 				© SwanBurger {new Date().getFullYear()}, built with{' '}
-				<a href="https://www.gatsbyjs.org">Gatsby</a>
+				<a href="https://gatsbyjs.org">
+					<Gatsby color="#4f1b2a" />
+				</a>
 			</Text>
 			<Social>
 				<a href="https://twitter.com/JeremySwann">
 					<Twitter color="#4f1b2a" />
 				</a>
-				<a href="https://twitter.com/JeremySwann">
+				<a href="https://github.com/JeremySwann">
 					<Github color="#4f1b2a" />
 				</a>
 			</Social>
