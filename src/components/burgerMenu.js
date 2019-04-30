@@ -40,8 +40,29 @@ class BurgerMenu extends Component {
 			: (this.plugins = '')
 		this.tw = TweenMax
 		this.tw.set(this.filling, {
+			drawSVG: '100%',
+		})
+		this.tw.set(this.bunTop, {
 			drawSVG: '100% 100%',
 		})
+		this.tw.set(this.bunBottom, {
+			drawSVG: '100% 100%',
+		})
+		this.tl.timeScale(1)
+		this.tl
+			.to(this.bunTop, 0.4, {
+				drawSVG: '100%',
+				ease: Linear.easeIn,
+			})
+			.to(
+				this.bunBottom,
+				0.4,
+				{
+					drawSVG: '100%',
+					ease: Linear.easeIn,
+				},
+				'-=0.4'
+			)
 	}
 	render() {
 		const { isOpen, toggle } = this.props
@@ -50,7 +71,10 @@ class BurgerMenu extends Component {
 				className="burger-menu"
 				aria-label="menu-button"
 				aria-pressed={isOpen}
-				onClick={toggle}
+				onClick={e => {
+					toggle(e)
+					!isOpen ? this.tl.reverse() : this.tl.play()
+				}}
 				onKeyDown={toggle}
 				ref={button => (this.button = button)}
 			>

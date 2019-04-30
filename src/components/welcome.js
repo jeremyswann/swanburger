@@ -5,7 +5,7 @@ import { styled } from 'linaria/react'
 import Abstract from './abstract'
 import Ramp from './ramp'
 
-const WelcomeBanner = styled.section`
+const Section = styled.section`
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -56,7 +56,7 @@ const Messege = styled.p`
 const Welcome = props => {
 	const { image, text } = props
 	return (
-		<WelcomeBanner>
+		<Section>
 			<Frame>
 				<Decor>
 					<Ramp color="#EECBD4" strokeWidth="4.3" />
@@ -70,7 +70,7 @@ const Welcome = props => {
 					</Messege>
 				</Box>
 			</Frame>
-		</WelcomeBanner>
+		</Section>
 	)
 }
 

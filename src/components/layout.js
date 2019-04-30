@@ -23,6 +23,7 @@ const Page = styled.div`
 	flex-direction: ${props => (props.isOpen ? 'row' : 'column')};
 	justify-content: ${props => (props.isOpen ? 'flex-start' : 'flex-start')};
 	align-items: ${props => (props.isOpen ? 'flex-start' : 'center')};
+	overflow: hidden;
 `
 const Container = styled.div`
 	max-width: 960px;
@@ -113,7 +114,7 @@ export const globals = css`
 		#___gatsby {
 			height: 100%;
 			div:first-child {
-				height: 100%;
+				max-height: 100%;
 			}
 		}
 		article,

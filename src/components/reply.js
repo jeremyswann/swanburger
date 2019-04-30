@@ -10,6 +10,7 @@ const ReplyForm = styled.section`
 	flex-direction: row;
 	justify-content: center;
 	margin-top: 1rem;
+	margin-bottom: 1rem;
 `
 const Form = styled.form`
 	display: flex;
@@ -40,7 +41,7 @@ const Form = styled.form`
 	}
 `
 const Who = styled.div`
-	display: ${values => (values.messege ? 'flex' : 'none')};
+	display: ${values => (values.message ? 'flex' : 'none')};
 	flex-direction: row;
 	background-color: #ffffff;
 	border-radius: 4.3px 4.3px 0 0;
@@ -63,16 +64,17 @@ const Who = styled.div`
 		}
 	}
 `
-const Messege = styled.div`
+const Message = styled.div`
 	display: flex;
 	flex-direction: row;
 	background-color: #ffffff;
-	border-radius: ${values => (values.messege ? '0 0 4.3px 4.3px' : '4.3px')};
+	border-radius: ${values => (values.message ? '0 0 4.3px 4.3px' : '4.3px')};
 	align-self: stretch;
 	margin: 0;
 	flex: 1;
 	position: relative;
-	svg {
+	svg,
+	small.sent {
 		z-index: 1;
 		position: absolute;
 		right: 0;
@@ -82,10 +84,28 @@ const Messege = styled.div`
 		flex: 1;
 		padding: 0.4rem 2.5rem 0.5rem 1.5rem;
 		margin: 0;
+		&:focus {
+			outline: none;
+		}
+	}
+	&.sent {
+		border-radius: 4.3px;
+		margin-bottom: 1rem;
+		background-color: #d69fad;
+		textarea {
+			color: #ffffff;
+		}
+		small.sent {
+			font-size: 0.5rem;
+			text-transform: uppercase;
+			font-weight: 400;
+			color: #ffffff;
+			bottom: 0;
+		}
 	}
 `
 const Send = styled.button`
-	display: ${values => (values.messege ? 'flex' : 'none')};
+	display: ${values => (values.message ? 'flex' : 'none')};
 	flex-direction: row;
 	background-color: #4f1b2a;
 	color: #fcf2f5;
@@ -124,17 +144,26 @@ const Reply = () => {
 	return (
 		<ReplyForm>
 			<Formik
-				initialValues={{ name: '', email: '', messege: '' }}
-				onSubmit={(values, { setSubmitting }) => {
-					setTimeout(() => {
-						alert(JSON.stringify(values, null, 2))
-						setSubmitting(false)
-					}, 500)
+				initialValues={{ name: '', email: '', message: '' }}
+				onSubmit={(values, { setSubmitting, setValues, setStatus }) => {
+					fetch('https://hooks.zapier.com/hooks/catch/4899649/j4glmm/', {
+						method: 'POST',
+						body: JSON.stringify(values, null, 2),
+					})
+						.then(res => {
+							setSubmitting(false)
+							setStatus({ message: values.message, rows: rows })
+							setValues({ name: '', email: '', message: '' })
+							setRows(1)
+						})
+						.catch(err => console.error('Error:', err))
 				}}
 				validationSchema={Yup.object().shape({
 					email: Yup.string()
 						.email()
 						.required('Required'),
+					name: Yup.string().required('Required'),
+					message: Yup.string().required('Required'),
 				})}
 				render={props => {
 					const {
@@ -145,9 +174,23 @@ const Reply = () => {
 						handleChange,
 						handleBlur,
 						handleSubmit,
+						status,
 					} = props
 					return (
 						<Form onSubmit={handleSubmit}>
+							<Message
+								style={{ display: status ? 'flex' : 'none' }}
+								className="sent"
+							>
+								<textarea
+									name="sent"
+									aria-label="sent"
+									value={status ? status.message : ''}
+									rows={status ? status.rows : ''}
+									readOnly
+								/>
+								<small className="sent">Sent</small>
+							</Message>
 							<Who {...values}>
 								<input
 									type="text"
@@ -170,21 +213,21 @@ const Reply = () => {
 									required
 								/>
 							</Who>
-							<Messege {...values}>
+							<Message {...values}>
 								<textarea
-									name="messege"
-									aria-label="messege"
-									value={values.messege}
+									name="message"
+									aria-label="message"
+									value={values.message}
 									onChange={e => {
 										handleRowsChange(e), handleChange(e)
 									}}
 									onBlur={handleBlur}
 									rows={rows}
-									placeholder="Compose your messege..."
+									placeholder="Compose your message..."
 									required
 								/>
 								<Emoji color="#D69FAD" />
-							</Messege>
+							</Message>
 							<Send {...values} type="submit" disabled={isSubmitting}>
 								Send
 							</Send>
