@@ -1,11 +1,8 @@
 import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import { styled } from 'linaria/react'
-import { TimelineMax, Linear, Power2 } from 'gsap'
+import { TimelineMax, Linear } from 'gsap'
 import { TweenMax } from 'gsap/TweenMaxBase'
-import DrawSVGPlugin from '../gasp-bonus/DrawSVGPlugin'
-
-const plugins = [Linear, Power2, DrawSVGPlugin]
 
 const Button = styled.button`
 	display: flex;
