@@ -21,8 +21,11 @@ const Decor = styled.div`
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: flex-start;
+	height: 45px;
+	overflow: hidden;
 	#abstract {
-		margin-top: 4px;
+		transform: rotate(45deg) translate(-3px, -50px);
+		transform-origin: 0% 50%;
 	}
 `
 const Box = styled.div`

@@ -12,6 +12,10 @@ const Nav = styled.nav`
 	display: flex;
 	flex-direction: column;
 	margin-left: 1rem;
+	@media screen and (min-width: 768px) {
+		flex-direction: row;
+		margin: 0;
+	}
 `
 const Decor = styled.div`
 	z-index: 1;
@@ -44,22 +48,62 @@ const MenuBar = styled.ul`
 	min-width: 230px;
 	&[aria-hidden='true'] {
 		display: none;
+		@media screen and (min-width: 768px) {
+			display: flex;
+		}
 	}
 	&[aria-hidden='false'] {
 		display: flex;
 	}
+	@media screen and (min-width: 768px) {
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		min-width: unset;
+		background-color: transparent;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+	}
+	&[role='menubar'] {
+		li[aria-haspopup] {
+			@media screen and (min-width: 768px) {
+				margin-left: 1rem;
+			}
+		}
+	}
 	li {
+		display: flex;
+		flex-direction: row;
 		margin: 0;
 		margin-bottom: 0.25rem;
 		flex: 1;
-		color: #fcf2f5;
-		background-color: #4f1b2a;
-		padding: 0.25rem 1rem;
 		border-radius: 4.3px;
-		display: flex;
-		flex-direction: column;
-		flex: 1;
+		color: #fcf2f5;
+		background: #4f1b2a;
+		transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+		&:hover {
+			background: #eecbd4;
+			color: #4f1b2a;
+		}
+		@media screen and (min-width: 768px) {
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+		&[aria-haspopup='true'] {
+			position: relative;
+			cursor: pointer;
+			padding: 0.25rem 1rem;
+			border-radius: 4.3px;
+		}
 		a {
+			display: flex;
+			flex-direction: row;
+			padding: 0.25rem 1rem;
 			color: inherit;
 			text-decoration: none;
 		}
@@ -76,6 +120,16 @@ const Dropdown = styled.ul`
 	display: flex;
 	flex-direction: column;
 	text-decoration: none;
+	@media screen and (min-width: 768px) {
+		position: absolute;
+		top: 35px;
+		left: 0;
+		margin: 0;
+		margin-top: 1rem;
+		align-items: flex-start;
+		background-color: #4f1b2a;
+		border-radius: 4.3px;
+	}
 	&[aria-hidden='true'] {
 		display: none;
 	}
@@ -85,6 +139,10 @@ const Dropdown = styled.ul`
 `
 const DropdownItem = styled.li`
 	margin: 0;
+	@media screen and (min-width: 768px) {
+		margin-bottom: 0.5rem;
+		min-width: 130px;
+	}
 	a {
 		color: inherit;
 		text-decoration: none;
@@ -129,6 +187,9 @@ const Menu = props => {
 							</Link>
 						</DropdownItem>
 					</Dropdown>
+				</MenuItem>
+				<MenuItem role="menuitem" aria-haspopup="false">
+					<Link to="/blog">Blog</Link>
 				</MenuItem>
 				<MenuItem role="menuitem" aria-haspopup="false">
 					<Link to="/contact">Contact</Link>

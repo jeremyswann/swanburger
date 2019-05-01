@@ -15,14 +15,25 @@ const Footer = styled.footer`
 	flex-wrap: wrap;
 `
 const Text = styled.span`
+	display: flex;
 	font-family: 'Roboto Slab';
-	font-size: 1.5rem;
-	height: 1.5rem;
+	font-size: 1rem;
+	max-height: 1.5rem;
 	color: #4f1b2a;
 	margin: 0.5rem 0;
 	flex: 1;
 	a {
-		color: #b25ed1;
+		display: flex;
+		padding-left: 0.5rem;
+		svg {
+			display: flex;
+			transition: fill 0.3s ease-in-out;
+			&#gatsby {
+				&:hover {
+					fill: #b25ed1;
+				}
+			}
+		}
 	}
 `
 const Social = styled.span`
@@ -35,11 +46,17 @@ const Social = styled.span`
 	a {
 		margin: 0 0.5rem;
 		svg {
-			fill: #4f1b2a;
-		}
-		&:hover {
-			svg {
-				fill: #4f1b2a;
+			display: flex;
+			transition: fill 0.3s ease-in-out;
+			&#twitter {
+				&:hover {
+					fill: #387fd2;
+				}
+			}
+			&#github {
+				&:hover {
+					fill: #333333;
+				}
 			}
 		}
 		&:first-child {
@@ -55,17 +72,23 @@ const PageFooter = () => {
 	return (
 		<Footer>
 			<Text>
-				© SwanBurger {new Date().getFullYear()}, built with{' '}
-				<a href="https://gatsbyjs.org">
-					<Gatsby color="#4f1b2a" />
+				© SwanBurger {new Date().getFullYear()}, built with
+				<a href="https://gatsbyjs.org" target="_blank noopener noreferrer">
+					<Gatsby color="#4f1b2a" alt="Gatsby" />
 				</a>
 			</Text>
 			<Social>
-				<a href="https://twitter.com/JeremySwann">
-					<Twitter color="#4f1b2a" />
+				<a
+					href="https://twitter.com/JeremySwann"
+					target="_blank noopener noreferrer"
+				>
+					<Twitter color="#4f1b2a" alt="Twitter" />
 				</a>
-				<a href="https://github.com/JeremySwann">
-					<Github color="#4f1b2a" />
+				<a
+					href="https://github.com/JeremySwann"
+					target="_blank noopener noreferrer"
+				>
+					<Github color="#4f1b2a" alt="Github" />
 				</a>
 			</Social>
 		</Footer>

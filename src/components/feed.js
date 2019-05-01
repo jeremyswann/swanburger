@@ -45,7 +45,7 @@ const Card = styled.div`
 	align-items: flex-start;
 	background-color: #4f1b2a;
 	border-radius: 4.3px;
-	border: #4f1b2a solid 4.3px;
+	/* border: #4f1b2a solid 4.3px; */
 	margin-top: 1rem;
 	font-family: 'Roboto Slab';
 	a {
@@ -60,6 +60,7 @@ const Card = styled.div`
 		border-color: #4f1b2a;
 		background-color: #4f1b2a;
 		color: #fcf2f5;
+		min-height: 306px;
 		a {
 			font-family: 'Ramaraja';
 			font-size: 36px;
@@ -75,6 +76,7 @@ const Card = styled.div`
 		background-color: #eecbd4;
 		color: #4f1b2a;
 		padding: 0.5rem;
+		min-height: 144px;
 		a {
 			margin-bottom: 1rem;
 			small.category {
@@ -123,12 +125,10 @@ const Decor = styled.div`
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: flex-start;
+	height: 45px;
 	#abstract {
-		margin-bottom: 4px;
-		margin-right: -18px;
-		transform: scaleY(-1);
-		filter: FlipH;
-		-ms-filter: 'FlipH';
+		transform: scaleY(-1) rotate(45deg) translate(5px, -7px);
+		transform-origin: 0% 50%;
 	}
 `
 const Recent = styled.div`
@@ -151,7 +151,11 @@ const Feed = props => {
 					</Link>
 				</Card>
 				<Decor>
-					<Abstract color="#4f1b2a" negative="#FCF2F5" strokeWidth="4.3" />
+					<Abstract
+						color="#4f1b2a"
+						negative="#FCF2F5"
+						transform="scaleY(-1) rotate(45deg)"
+					/>
 				</Decor>
 			</Featured>
 			<Recent>

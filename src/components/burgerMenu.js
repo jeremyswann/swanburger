@@ -16,6 +16,9 @@ const Button = styled.button`
 		outline-width: 1px;
 		outline-style: solid;
 	}
+	@media screen and (min-width: 768px) {
+		display: none;
+	}
 `
 
 class BurgerMenu extends Component {

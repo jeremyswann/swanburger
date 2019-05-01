@@ -5,6 +5,7 @@ import { styled } from 'linaria/react'
 
 import BurgerIcon from './burgerIcon'
 import BurgerMenu from './burgerMenu'
+import Menu from './menu'
 
 const Header = styled.header`
 	display: flex;
@@ -60,6 +61,7 @@ const PageHeader = ({ siteTitle, toggle, isOpen }) => {
 						<Title>{siteTitle}</Title>
 					</Link>
 				</Brand>
+				<Menu />
 				<BurgerMenu isOpen={isOpen} toggle={toggle} />
 			</Wrapper>
 		</Header>
