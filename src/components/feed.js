@@ -151,11 +151,7 @@ const Feed = props => {
 					</Link>
 				</Card>
 				<Decor>
-					<Abstract
-						color="#4f1b2a"
-						negative="#FCF2F5"
-						transform="scaleY(-1) rotate(45deg)"
-					/>
+					<Abstract color="#4f1b2a" negative="#FCF2F5" />
 				</Decor>
 			</Featured>
 			<Recent>

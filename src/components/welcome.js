@@ -63,7 +63,7 @@ const Welcome = props => {
 			<Frame>
 				<Decor>
 					<Ramp color="#EECBD4" strokeWidth="4.3" />
-					<Abstract color="#EECBD4" negative="#FCF2F5" strokeWidth="4.3" />
+					<Abstract color="#EECBD4" negative="#FCF2F5" />
 				</Decor>
 				<Box>
 					<Profile src={image} alt="profile image" />

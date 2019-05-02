@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Abstract = ({ color, negative, transform }) => (
+const Abstract = ({ color, negative }) => (
 	<svg
 		width="55.9"
 		height="81.7"
 		viewBox="0 0 55.9 81.7"
 		fill="none"
 		id="abstract"
-		transform={transform}
 	>
 		<path
 			fill={color}
